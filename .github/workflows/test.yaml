@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-        docker-compose up -d --build
-        docker-compose exec db:create
-        docker-compose exec db:migrate
-        docker-compose exec app bundle exec rspec spec
+          docker-compose up -d --build
+          docker-compose exec db:create
+          docker-compose exec db:migrate
+          docker-compose exec app bundle exec rspec spec
