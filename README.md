@@ -11,5 +11,3 @@ Rails + Docker + ECS + Github Actionsの開発実習用リポジトリ
 | タスク管理            | GithubのIssue            |
 | 自動テスト トリガー   | PullRequest時            |
 | 自動デプロイ トリガー | mainブランチへのマージ時 |
-
-Test
