@@ -8,7 +8,9 @@ on:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Hello World
-        run: echo "Hello, World"
+      - uses: actions/checkout@v2
+      - run: ls
+      - run: docker-compose -v
+      - run: exit 1
