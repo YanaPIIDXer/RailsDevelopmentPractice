@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: docker-compose up -d --build
-      - run: docker-compose exec db:create
-      - run: docker-compose exec db:migrate
-      - run: docker-compose exec app bundle exec rspec spec
+      - run: |
+        docker-compose up -d --build
+        docker-compose exec db:create
+        docker-compose exec db:migrate
+        docker-compose exec app bundle exec rspec spec
