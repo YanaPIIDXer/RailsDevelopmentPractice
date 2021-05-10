@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker-compose build
-      - run: docker-compose run app db:create
-      - run: docker-compose run app db:migrate
+      - run: docker-compose run app rails db:create
+      - run: docker-compose run app rails db:migrate
       - run: docker-compose run app bundle exec rspec spec
