@@ -23,6 +23,24 @@ resource "aws_subnet" "public2" {
   }
 }
 
+resource "aws_subnet" "private1" {
+  vpc_id = aws_vpc.main.id
+  cidr_block = "10.0.3.0/24"
+  availability_zone = "ap-northeast-1a"
+  tags = {
+    Name = "RailsTest_Private1"
+  }
+}
+
+resource "aws_subnet" "private2" {
+  vpc_id = aws_vpc.main.id
+  cidr_block = "10.0.4.0/24"
+  availability_zone = "ap-northeast-1c"
+  tags = {
+    Name = "RailsTest_Private2"
+  }
+}
+
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 }
@@ -46,4 +64,21 @@ resource "aws_route_table_association" "public1" {
 resource "aws_route_table_association" "public2" {
   subnet_id      = aws_subnet.public2.id
   route_table_id = aws_route_table.public.id
+}
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "RailsTest_Private"
+  }
+}
+
+resource "aws_route_table_association" "private1" {
+  subnet_id      = aws_subnet.private1.id
+  route_table_id = aws_route_table.private.id
+}
+
+resource "aws_route_table_association" "private2" {
+  subnet_id      = aws_subnet.private2.id
+  route_table_id = aws_route_table.private.id
 }
