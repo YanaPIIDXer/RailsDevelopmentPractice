@@ -8,6 +8,8 @@ services:
             - ./Rails/src:/app
         depends_on:
             - db
+        tty: true
+        restart: always
 
     db:
         image: mysql:5.7

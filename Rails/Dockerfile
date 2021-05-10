@@ -12,3 +12,6 @@ ADD ./src/Gemfile.lock /app/Gemfile.lock
 
 RUN bundle install
 ADD ./src /app
+
+EXPOSE 3000
+CMD ["rails", "server", "-b" "0.0.0.0", "-p", "3000"]
