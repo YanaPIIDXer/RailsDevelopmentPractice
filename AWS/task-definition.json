@@ -1,0 +1,76 @@
+{
+    "ipcMode": null,
+    "executionRoleArn": "arn:aws:iam::310815347645:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+        {
+            "dnsSearchDomains": null,
+            "environmentFiles": null,
+            "logConfiguration": null,
+            "entryPoint": null,
+            "portMappings": [
+                {
+                    "hostPort": 0,
+                    "protocol": "tcp",
+                    "containerPort": 3000
+                }
+            ],
+            "command": null,
+            "linuxParameters": null,
+            "cpu": 0,
+            "environment": [
+                {
+                    "name": "APP_DATABASE_HOST",
+                    "value": "terraform-20210511133909941400000002.crcjbbt6pyd0.ap-northeast-1.rds.amazonaws.com"
+                },
+                {
+                    "name": "APP_DATABASE_USERNAME",
+                    "value": "develop"
+                },
+                {
+                    "name": "RAILS_ENV",
+                    "value": "production"
+                }
+            ],
+            "resourceRequirements": null,
+            "ulimits": null,
+            "dnsServers": null,
+            "mountPoints": [],
+            "workingDirectory": null,
+            "secrets": null,
+            "dockerSecurityOptions": null,
+            "memory": null,
+            "memoryReservation": null,
+            "volumesFrom": [],
+            "stopTimeout": null,
+            "image": "310815347645.dkr.ecr.ap-northeast-1.amazonaws.com/rails_test",
+            "startTimeout": null,
+            "firelensConfiguration": null,
+            "dependsOn": null,
+            "disableNetworking": null,
+            "interactive": null,
+            "healthCheck": null,
+            "essential": true,
+            "links": null,
+            "hostname": null,
+            "extraHosts": null,
+            "pseudoTerminal": null,
+            "user": null,
+            "readonlyRootFilesystem": null,
+            "dockerLabels": null,
+            "systemControls": null,
+            "privileged": null,
+            "name": "rails"
+        }
+    ],
+    "placementConstraints": [],
+    "memory": "512",
+    "taskRoleArn": null,
+    "family": "RailsTest",
+    "pidMode": null,
+    "requiresCompatibilities": [],
+    "networkMode": "bridge",
+    "cpu": "512",
+    "inferenceAccelerators": null,
+    "proxyConfiguration": null,
+    "volumes": []
+}
