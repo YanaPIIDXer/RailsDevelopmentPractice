@@ -37,8 +37,8 @@ data "template_file" "template" {
 echo ECS_CLUSTER=RailsTest >> /etc/ecs/ecs.config
 echo ECS_BACKEND_HOST= >> /etc/ecs/ecs.config
 
-echo "docker run -it ${var.image_uri} db:create RAILS_ENV=production APP_DATABASE_HOST=${aws_db_instance.main.address} APP_DATABASE_USERNAME=develop APP_DATABASE_PASSWORD=${var.database_password}" >> /etc/ecs/init.sh
-echo "docker run -it ${var.image_uri} db:migrate RAILS_ENV=production APP_DATABASE_HOST=${aws_db_instance.main.address} APP_DATABASE_USERNAME=develop APP_DATABASE_PASSWORD=${var.database_password}" >> /etc/ecs/init.sh
+echo "docker run -it ${var.image_uri} rails db:create RAILS_ENV=production APP_DATABASE_HOST=${aws_db_instance.main.address} APP_DATABASE_USERNAME=develop APP_DATABASE_PASSWORD=${var.database_password}" >> /etc/ecs/init.sh
+echo "docker run -it ${var.image_uri} rails db:migrate RAILS_ENV=production APP_DATABASE_HOST=${aws_db_instance.main.address} APP_DATABASE_USERNAME=develop APP_DATABASE_PASSWORD=${var.database_password}" >> /etc/ecs/init.sh
 chmod +x /etc/ecs/init.sh
 EOF
 }
