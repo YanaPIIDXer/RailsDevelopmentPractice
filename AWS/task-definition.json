@@ -65,31 +65,11 @@
     "placementConstraints": [],
     "memory": "512",
     "taskRoleArn": null,
-    "compatibilities": [
-        "EC2"
-    ],
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:310815347645:task-definition/RailsTest:20",
     "family": "RailsTest",
-    "requiresAttributes": [
-        {
-            "targetId": null,
-            "targetType": null,
-            "value": null,
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
-            "targetId": null,
-            "targetType": null,
-            "value": null,
-            "name": "ecs.capability.execution-role-ecr-pull"
-        }
-    ],
     "pidMode": null,
     "requiresCompatibilities": [],
     "networkMode": "bridge",
     "cpu": "512",
-    "revision": 20,
-    "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
     "volumes": []
