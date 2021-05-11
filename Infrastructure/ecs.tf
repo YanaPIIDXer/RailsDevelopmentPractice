@@ -4,6 +4,7 @@ resource "aws_ecs_task_definition" "taskdef" {
     network_mode = "bridge"
     cpu = 512
     memory = 512
+    execution_role_arn = "arn:aws:iam::310815347645:role/ecsTaskExecutionRole"
     container_definitions = jsonencode(
         [
             {
