@@ -42,7 +42,7 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPO_NAME }}
         with:
           task-definition: AWS/task-definition.json
-          container-name: rails_test
+          container-name: rails
           image: $ECR_REPOSITORY:latest
 
       - name: Deploy to ECS
