@@ -31,6 +31,6 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPO_NAME }}
         run: |
-          IMAGE_TAG=latest
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg PRODUCTION_DATABASE_PASSWORD=${{ secrets.PRODUCTION_DATABASE_PASSWORD }} ./Rails
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker build -t rails_test --build-arg PRODUCTION_DATABASE_PASSWORD=${{ secrets.PRODUCTION_DATABASE_PASSWORD }} ./Rails
+          docker tag rails_test:latest $ECR_REPOSITORY:latest
+          docker push $ECR_REPOSITORY:latest
