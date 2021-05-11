@@ -1,6 +1,7 @@
 FROM ruby:2.5.3
 
-ARG PRODUCTION_DATABASE_PASSWORD
+ARG PRODUCTION_DB_PASSWORD
+ENV PRODUCTION_DATABASE_PASSWORD=${PRODUCTION_DB_PASSWORD}
 
 RUN apt-get update -qq && \
     apt-get install -y build-essential \ 
