@@ -51,6 +51,13 @@ resource "aws_security_group" "ecs_instance_sg" {
         security_groups  = [aws_security_group.lb_sg.id]
     }
 
+    ingress {
+        from_port        = 22
+        to_port          = 22
+        protocol         = "TCP"
+        cidr_blocks      = ["0.0.0.0/0"]
+    }
+
     egress {
         from_port        = 0
         to_port          = 0
@@ -68,6 +75,7 @@ resource "aws_launch_configuration" "instance_launch_conf" {
     security_groups = [aws_security_group.ecs_instance_sg.id]
     user_data = base64encode(data.template_file.template.rendered)
     associate_public_ip_address = true
+    key_name = "key"
 }
 
 resource "aws_autoscaling_group" "autoscale_group" {
