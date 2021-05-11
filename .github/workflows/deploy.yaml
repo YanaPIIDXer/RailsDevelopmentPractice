@@ -1,0 +1,51 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Rails/src"
+
+jobs:
+  deploy:
+    name: Deploy to ECS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and push container image to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.AWS_ECR_REPO_NAME }}
+        run: |
+          docker build -t rails_test --build-arg PRODUCTION_DB_PASSWORD=${{ secrets.PRODUCTION_DATABASE_PASSWORD }} --build-arg RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} ./Rails
+          docker tag rails_test:latest $ECR_REPOSITORY:latest
+          docker push $ECR_REPOSITORY:latest
+
+      - name: Render task definition
+        id: render-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: AWS/task-definition.json
+          container-name: rails
+          image: ${{ secrets.AWS_ECR_REPO_NAME }}:latest
+
+      - name: Deploy to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-container.outputs.task-definition }}
+          service: RailsTest
+          cluster: RailsTest
