@@ -3,6 +3,9 @@ FROM ruby:2.5.3
 ARG PRODUCTION_DB_PASSWORD
 ENV PRODUCTION_DATABASE_PASSWORD=${PRODUCTION_DB_PASSWORD}
 
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
+
 RUN apt-get update -qq && \
     apt-get install -y build-essential \ 
     libpq-dev \        
