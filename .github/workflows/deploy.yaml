@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - configure_auto_deploy_environment # 実験用。本来ならmainリポジトリ
+      - feature/configure_auto_deploy_environment # 実験用。本来ならmainリポジトリ
 #    paths:
 #      - "Rails/src"
 
